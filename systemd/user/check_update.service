@@ -1,0 +1,12 @@
+[Unit]
+Description=Check if the UI update is finished
+Before=apache2.service autostart.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/check_update.sh
+#EnvironmentFile=/etc/sysconfig/check_update.conf
+EnvironmentFile=/etc/check_update/check_update.conf
+
+[Install]
+WantedBy=default.service
