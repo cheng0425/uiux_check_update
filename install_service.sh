@@ -1,25 +1,27 @@
 #!/bin/bash -e
 
-# user level
-sudo mkdir /etc/check_update
-sudo cp config/check_update.conf /etc/check_update/
-sudo chmod 755 /etc/check_update/check_update.conf
+# TODO: get the current version
+# VERSION=$1
+# BACKUP_DIR=$2
+CONF_DIR=/etc/check_update
+SCRIPT_DIR=/usr/local/bin
+SERVICE_DIR=~/.config/systemd/user
+# Backup
+cp version_list ${BACKUP_DIR}/
 
-sudo cp scripts/check_update.sh /usr/local/bin/
-sudo chmod 755 /usr/local/bin/check_update.sh
+# Service: user level
+if [ ! -d ${CONF_DIR} ]; then
+    sudo mkdir ${CONF_DIR}
+fi
+# TODO: change the content of config file
+sudo cp config/check_update.conf ${CONF_DIR}/
+sudo chmod 755 ${CONF_DIR}/check_update.conf
 
-sudo cp systemd/user/check_update.service ~/.config/systemd/user/
-sudo chmod 644 ~/.config/systemd/user/check_update.service
+sudo cp scripts/check_update.sh ${SCRIPT_DIR}/
+sudo chmod 755 ${SCRIPT_DIR}/check_update.sh
+
+cp systemd/user/check_update.service ${SERVICE_DIR}/
+sudo chmod 644 ${SERVICE_DIR}/check_update.service
 
 systemctl --user daemon-reload
-
-# system level
-# sudo cp config/check_update.conf /etc/sysconfig/
-# sudo chmod 550 /etc/sysconfig/check_update.conf
-
-# sudo cp scripts/check_update.sh /usr/local/bin/
-# sudo chmod 550 /usr/local/bin/check_update.sh
-
-# sudo cp systemd/system/check_update.service /etc/systemd/system/
-
-# systemctl daemon-reload
+systemctl --user enable check_update.service

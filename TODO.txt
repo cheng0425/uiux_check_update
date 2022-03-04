@@ -1,0 +1,14 @@
+version_list:
+    initialize
+    update
+    two files fot previous and current version or just put prev/cur into the file
+    
+installer:
+    install check_update.service
+    update version_list?
+    backup
+    zenity installation?
+
+backup
+
+How about ROS update?
