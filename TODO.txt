@@ -10,5 +10,5 @@ installer:
     zenity installation?
 
 backup
-
-How about ROS update?
+    use update date as version
+    how to manage versions

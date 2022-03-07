@@ -1,4 +1,3 @@
 # NOTICE: There should be a blank line at the end
-# FORMAT: current_version direcotry
-# web_app_v4.4 /var/www
-tryserver_v1.0 /home/try/catkin_ws/src/ui_packages/tryserver
+# FORMAT: index date(%Y-%m-%d) 
+0 2022-03-07

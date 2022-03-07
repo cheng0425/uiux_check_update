@@ -7,7 +7,7 @@ CONF_DIR=/etc/check_update
 SCRIPT_DIR=/usr/local/bin
 SERVICE_DIR=~/.config/systemd/user
 # Backup
-cp version_list ${BACKUP_DIR}/
+# cp version_list ${BACKUP_DIR}/
 
 # Service: user level
 if [ ! -d ${CONF_DIR} ]; then
@@ -23,5 +23,6 @@ sudo chmod 755 ${SCRIPT_DIR}/check_update.sh
 cp systemd/user/check_update.service ${SERVICE_DIR}/
 sudo chmod 644 ${SERVICE_DIR}/check_update.service
 
+systemctl --user disable check_update.service
 systemctl --user daemon-reload
 systemctl --user enable check_update.service
